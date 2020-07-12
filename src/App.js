@@ -6,34 +6,57 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: "",
-      todoArr: [],
+      // input: "",
+      // todoArr: [],
+      r: 0,
+      g: 0,
+      b: 0,
     };
   }
-  handleChange = (e) => {
-    const value = e.target.value;
+  // handleChange = (e) => {
+  //   const value = e.target.value;
+  //   this.setState({
+  //     input: value,
+  //   });
+  // };
+  // handleClick = () => {
+  //   this.setState({
+  //     todoArr: this.state.todoArr.concat(`${this.state.input}`),
+  //     input: "",
+  //   });
+  // };
+  // handleDelete = (e) => {
+  //   let index = e.currentTarget.id;
+  //   console.log(index);
+  //   this.setState({
+  //     todoArr: this.state.todoArr.splice(index, 1),
+  //   });
+  // };
+  handleRandom = () => {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
     this.setState({
-      input: value,
-    });
-  };
-  handleClick = () => {
-    this.setState({
-      todoArr: this.state.todoArr.concat(`${this.state.input}`),
-      input: "",
-    });
-  };
-  handleDelete = (e) => {
-    let index = e.currentTarget.id;
-    console.log(index);
-    this.setState({
-      todoArr: this.state.todoArr.splice(index, 1),
+      r: r,
+      g: g,
+      b: b,
     });
   };
   render() {
+    const box = {
+      backgroundColor: `rgba(${this.state.r}, ${this.state.g}, ${this.state.b})`,
+      width: "300px",
+      height: "300px",
+      border: "5px solid black",
+    };
     return (
       <div className="p-4">
         <div className="container">
-          <h1>Todo list</h1>
+          <div style={box}></div>
+          <button className="btn btn-primary mt-2" onClick={this.handleRandom}>
+            Random
+          </button>
+          {/* <h1>Todo list</h1>
           {console.log(this.state.todoArr)}
           <p>Comment your todo</p>
           <input
@@ -59,7 +82,7 @@ class App extends Component {
                   </span>
                 </div>
               );
-            })}
+            })} */}
         </div>
       </div>
     );
