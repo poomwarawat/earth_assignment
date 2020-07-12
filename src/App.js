@@ -22,11 +22,19 @@ class App extends Component {
       input: "",
     });
   };
+  handleDelete = (e) => {
+    let index = e.currentTarget.id;
+    console.log(index);
+    this.setState({
+      todoArr: this.state.todoArr.splice(index, 1),
+    });
+  };
   render() {
     return (
       <div className="p-4">
         <div className="container">
           <h1>Todo list</h1>
+          {console.log(this.state.todoArr)}
           <p>Comment your todo</p>
           <input
             className="form-control"
@@ -38,7 +46,19 @@ class App extends Component {
           </button>
           {this.state.todoArr.length > 0 &&
             this.state.todoArr.map((data, index) => {
-              return <div className="alert alert-primary mt-1">{data}</div>;
+              return (
+                <div key={index} className="alert alert-primary mt-1">
+                  {data}{" "}
+                  <span
+                    id={index + 1}
+                    className="float-right"
+                    onClick={this.handleDelete}
+                    style={{ color: "red" }}
+                  >
+                    DELETE
+                  </span>
+                </div>
+              );
             })}
         </div>
       </div>
